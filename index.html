@@ -169,13 +169,6 @@
     color: var(--ground);
     border-color: var(--pandan);
   }
-  :root[data-theme="dark"] .chip[aria-pressed="true"],
-  @media (prefers-color-scheme: dark) {
-    .chip[aria-pressed="true"] {
-      background: var(--pandan);
-      color: var(--ground);
-    }
-  }
 
   /* LIST */
   .list {
@@ -253,8 +246,55 @@
     padding: 2px 0 2px 12px;
     margin-bottom: 14px;
   }
-  :root[data-theme="dark"] .signature,
-  @media (prefers-color-scheme: dark) { .signature { color: var(--pandan); } }
+  .benchmark {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+    opacity: 0.78;
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    background: var(--card);
+    border-left: 3px solid var(--sambal);
+    max-width: 58ch;
+  }
+  .benchmark b {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sambal);
+    font-weight: 800;
+    margin-right: 8px;
+  }
+  .plate.reference {
+    background: linear-gradient(to right, var(--card), transparent 70%);
+    border-top: 3px solid var(--pandan);
+    border-bottom: 3px double var(--rule);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 8px;
+  }
+  .plate.reference .rank {
+    color: var(--pandan);
+    font-size: 68px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .plate.reference .rank small { color: var(--pandan); opacity: 0.85; }
+  .plate.reference::before {
+    content: "The Benchmark";
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sambal);
+  }
 
   .meta-row {
     display: flex;
@@ -298,8 +338,6 @@
     transition: all 0.15s ease;
     white-space: nowrap;
   }
-  :root[data-theme="dark"] .verify,
-  @media (prefers-color-scheme: dark) { .verify { color: var(--pandan); border-color: var(--pandan); } }
   .verify:hover {
     background: var(--pandan);
     color: var(--ground);
@@ -326,8 +364,6 @@
   }
   .badge.warn { background: var(--kaya); color: #4a2f10; }
   .badge.hot { background: var(--sambal); color: #fff; }
-  :root[data-theme="dark"] .badge.warn,
-  @media (prefers-color-scheme: dark) { .badge.warn { color: #2a1a05; } }
 
   /* Footer */
   footer {
@@ -405,15 +441,18 @@
     <p class="kicker">A field guide · Redhill Close, Singapore</p>
     <h1 class="title">Ten plates of <em>nasi&nbsp;lemak</em> worth leaving home for.</h1>
     <p class="standfirst">
-      A shortlist of Singapore's best coconut-rice breakfasts, filtered for a
-      Redhill Close postcode: 4.5-star (or thereabouts) on Google, breakfast
-      hours where possible, and — with two forgivable exceptions — a drive
-      under twenty minutes on a clear morning.
+      A shortlist of coconut-rice breakfasts in Singapore's west and centre,
+      filtered for a Redhill Close postcode: 4.5-star (or thereabouts) on
+      Google, breakfast hours where possible, and a drive under twenty
+      minutes on a clear morning. Every entry is measured against a single
+      reference plate — <em>Cafe Sunset Railway</em> at Sunset Way.
     </p>
     <div class="byline">
       <span>Curated 26 Jul 2026</span>
       <span class="dot"></span>
-      <span>Sources · Google · SETHLUI · MissTamChiak · Eatbook</span>
+      <span>West &amp; central only</span>
+      <span class="dot"></span>
+      <span>Sources · Google · SETHLUI · Eatbook · Honeycombers</span>
     </div>
     <svg class="leaf-wave" viewBox="0 0 960 44" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,22 Q40,4 80,22 T160,22 T240,22 T320,22 T400,22 T480,22 T560,22 T640,22 T720,22 T800,22 T880,22 T960,22 L960,44 L0,44 Z" fill="currentColor"/>
@@ -423,22 +462,45 @@
       <button class="chip" data-filter="all" aria-pressed="true">All ten</button>
       <button class="chip" data-filter="breakfast" aria-pressed="false">Breakfast open</button>
       <button class="chip" data-filter="near" aria-pressed="false">≤ 10 min drive</button>
-      <button class="chip" data-filter="traditional" aria-pressed="false">Traditional</button>
-      <button class="chip" data-filter="modern" aria-pressed="false">Modern</button>
+      <button class="chip" data-filter="west" aria-pressed="false">West</button>
+      <button class="chip" data-filter="central" aria-pressed="false">Central</button>
     </div>
   </header>
 
   <main class="list" id="list">
 
-    <article class="plate" data-tags="breakfast near traditional">
+    <article class="plate reference" data-tags="breakfast west">
+      <div class="rank">◆<small>The reference plate</small></div>
+      <div class="body">
+        <h2>Cafe Sunset Railway</h2>
+        <p class="locus">41 Sunset Way · #01-02 Clementi Arcade · Thu–Sun only</p>
+        <div class="signature">Coconut basmati rice, house rendang chicken, kaya-cake energy.</div>
+        <p class="note">
+          The counterpoint on this list — not a hawker stall but a small, quiet neighbourhood cafe that has quietly become the yardstick for a certain kind of considered, sit-down nasi lemak. Basmati grain, rendang instead of fried chicken, and a plate that arrives on ceramic. Every other entry is measured against this one.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.3 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">08:00 Thu–Sun</span></span>
+          <span><span class="label">Drive</span><span class="val">13 min</span></span>
+          <span><span class="label">Price</span><span class="val">$9–14</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Cafe+Sunset+Railway+Sunset+Way+Clementi" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge hot">Benchmark</span></div>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast near central">
       <div class="rank">01<small>Walk from home</small></div>
       <div class="body">
         <h2>Fa Ji Nasi Lemak</h2>
-        <p class="locus">ABC Brickworks Food Centre · Stall 01-113</p>
+        <p class="locus">ABC Brickworks Food Centre · Bukit Merah · Stall 01-113</p>
         <div class="signature">Fried-to-order chicken wing, sambal that leans smoky over sweet.</div>
         <p class="note">
           The neighbourhood answer. A ten-minute walk from Redhill Close and the queue moves briskly by 8am. Get the wing and drumstick set; the ikan bilis stays crisp because they only fry it when you order.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>Wins on immediacy and price — a third the cost, open six days earlier in the morning, and no drive at all. Loses the ceramic plate and the rendang. This is the weekday plate; Sunset Railway is the Sunday one.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
           <span><span class="label">Opens</span><span class="val">06:00</span></span>
@@ -452,15 +514,38 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="breakfast near traditional">
-      <div class="rank">02<small>10 min via CTE</small></div>
+    <article class="plate" data-tags="breakfast near west">
+      <div class="rank">02<small>Ghim Moh</small></div>
+      <div class="body">
+        <h2>Guan Taste Nasi Lemak</h2>
+        <p class="locus">Ghim Moh Market &amp; Food Centre · Stall 01-13</p>
+        <div class="signature">Pick-your-own sides; the fried mee hoon is the sleeper order.</div>
+        <p class="note">
+          Two kilometres from Sunset Railway and a completely different proposition — a busy market stall where you point at what you want and pay by the piece. The rice is clean rather than rich, which makes it a better vehicle for the sambal than most.
+        </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>The closest geographic rival and the sharpest contrast: same neighbourhood, half the price, none of the ceremony. If Sunset Railway is a sit-down plate, this is the one you eat standing up in twelve minutes.</p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.3 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">07:00</span></span>
+          <span><span class="label">Drive</span><span class="val">8 min</span></span>
+          <span><span class="label">Price</span><span class="val">$3.50–6</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Guan+Taste+Nasi+Lemak+Ghim+Moh+Market" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast near central">
+      <div class="rank">03<small>Hong Lim · CBD</small></div>
       <div class="body">
         <h2>Rahim Muslim Food</h2>
         <p class="locus">Hong Lim Market &amp; Food Centre · Stall 02-79</p>
         <div class="signature">The office-crowd standard: light sambal, generous rice.</div>
         <p class="note">
-          A civil-service institution since the 1970s. You come here for the composure of the plate — nothing shouts, nothing is out of place, and it's on the table in ninety seconds. Bring cash.
+          A civil-service institution since the 1970s. You come here for the composure of the plate — nothing shouts, nothing is out of place, and it&rsquo;s on the table in ninety seconds. Bring cash.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>Beats it on rating and on speed; concedes on character. Rahim is engineered for a lunch hour, Sunset Railway for a slow morning. Choose by how much time you actually have.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
           <span><span class="label">Opens</span><span class="val">06:30</span></span>
@@ -473,8 +558,8 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="breakfast modern">
-      <div class="rank">03<small>Amoy St</small></div>
+    <article class="plate" data-tags="central">
+      <div class="rank">04<small>Amoy St</small></div>
       <div class="body">
         <h2>Nasi Lemak Chinatown</h2>
         <p class="locus">Amoy Street Food Centre · Stall 02-79</p>
@@ -482,6 +567,7 @@
         <p class="note">
           A modernised Chinese-hawker take that regularly appears on best-of lists. The rice is fragrant enough to eat on its own; the fried chicken thigh is the reason to arrive by 11:30.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>Matches it on ambition and beats it on rating, at roughly half the price. The catch is the same one: a 10:30 opening means neither of these is a breakfast plate. Sunset Railway at least gets you an 8am table.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
           <span><span class="label">Opens</span><span class="val">10:30</span></span>
@@ -491,18 +577,20 @@
       </div>
       <div class="aside">
         <a class="verify" href="https://www.google.com/maps/search/Nasi+Lemak+Chinatown+Amoy+Street" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge warn">Not breakfast</span></div>
       </div>
     </article>
 
-    <article class="plate" data-tags="modern">
-      <div class="rank">04<small>Beach Rd</small></div>
+    <article class="plate" data-tags="central">
+      <div class="rank">05<small>Ann Siang Hill</small></div>
       <div class="body">
         <h2>The Coconut Club</h2>
-        <p class="locus">Beach Road (flagship) &amp; Ann Siang Hill</p>
+        <p class="locus">Ann Siang Hill · shophouse dining room</p>
         <div class="signature">Bario rice, deep-fried ayam berempah — nasi lemak at restaurant altitude.</div>
         <p class="note">
-          The reference point for gourmet nasi lemak in Singapore. Bario coconuts from Sarawak, house-blended sambal, a chicken that has been credibly called the country's best. It's a splurge but the room is quiet and the plate is composed.
+          The reference point for gourmet nasi lemak in Singapore. Bario coconuts from Sarawak, house-blended sambal, a chicken that has been credibly called the country&rsquo;s best. It&rsquo;s a splurge but the room is quiet and the plate is composed.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>The same idea executed with a bigger budget — both are sit-down, ceramic-plate nasi lemak, but Coconut Club sources its rice from Sarawak and charges accordingly. Sunset Railway is the version you can justify on a Thursday.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
           <span><span class="label">Opens</span><span class="val">11:00</span></span>
@@ -511,13 +599,36 @@
         </div>
       </div>
       <div class="aside">
-        <a class="verify" href="https://www.google.com/maps/search/The+Coconut+Club+Beach+Road+Singapore" target="_blank" rel="noopener">Verify on Maps</a>
+        <a class="verify" href="https://www.google.com/maps/search/The+Coconut+Club+Ann+Siang+Hill+Singapore" target="_blank" rel="noopener">Verify on Maps</a>
         <div class="badges"><span class="badge warn">Not breakfast</span></div>
       </div>
     </article>
 
-    <article class="plate" data-tags="breakfast traditional">
-      <div class="rank">05<small>Adam Rd</small></div>
+    <article class="plate" data-tags="breakfast west">
+      <div class="rank">06<small>Clementi Rd</small></div>
+      <div class="body">
+        <h2>Fong Seng Nasi Lemak</h2>
+        <p class="locus">22 Clementi Road · near NUS · 06:00–04:00</p>
+        <div class="signature">Thirty years of student suppers; the rice arrives genuinely hot.</div>
+        <p class="note">
+          Open from 6am to 4am the next morning, which makes it the most forgiving entry on this list. Sets from about $4.50 with a long sides menu. The fried chicken holds its crispness better than a twenty-two-hour operation has any right to.
+        </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>Ten minutes apart in the same corner of the west, and the anti-Sunset-Railway in every other way: no closing days, no waiting for Thursday, a third of the price. What it gives up is the room — this is fluorescent-lit and functional.</p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.2 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">06:00</span></span>
+          <span><span class="label">Drive</span><span class="val">13 min</span></span>
+          <span><span class="label">Price</span><span class="val">$4.50–8</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Fong+Seng+Nasi+Lemak+Clementi+Road" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge warn">4.2 · kept for hours</span></div>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast central">
+      <div class="rank">07<small>Adam Rd</small></div>
       <div class="body">
         <h2>Selera Rasa Nasi Lemak</h2>
         <p class="locus">Adam Road Food Centre · Stall 01-02</p>
@@ -525,6 +636,7 @@
         <p class="note">
           The most-decorated Malay nasi lemak stall in Singapore, and the queue reflects it — join it before 8:30 or plan for forty minutes. The trip is worth it: crisp-skinned chicken, sambal with real depth, and rice you can taste the pandan in.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>The one entry that beats the benchmark outright on the food itself. Better rice, better chicken, better sambal, lower price. It costs you the queue and the seat — Sunset Railway&rsquo;s whole advantage is that you get a table without a fight.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
           <span><span class="label">Opens</span><span class="val">07:00</span></span>
@@ -534,104 +646,64 @@
       </div>
       <div class="aside">
         <a class="verify" href="https://www.google.com/maps/search/Selera+Rasa+Nasi+Lemak+Adam+Road" target="_blank" rel="noopener">Verify on Maps</a>
-        <div class="badges"><span class="badge hot">A-list</span></div>
+        <div class="badges"><span class="badge hot">Beats benchmark</span></div>
       </div>
     </article>
 
-    <article class="plate" data-tags="breakfast traditional">
-      <div class="rank">06<small>Geylang Serai</small></div>
+    <article class="plate" data-tags="breakfast west">
+      <div class="rank">08<small>Clementi 448</small></div>
       <div class="body">
-        <h2>Sinar Pagi Nasi Lemak</h2>
-        <p class="locus">Geylang Serai Market · Stall 02-137</p>
-        <div class="signature">Beef rendang so tender it flakes with the fork tine.</div>
+        <h2>Clementi 448 Nasi Lemak</h2>
+        <p class="locus">Clementi 448 Market &amp; Food Centre · Clementi Ave 3</p>
+        <div class="signature">A plain, early, unfussy plate — the HDB-block baseline done properly.</div>
         <p class="note">
-          The Sinar Pagi rendang is the reason to make the trip east. Order it with the works — squid sambal, sunny egg, that beef — and expect the plate to come out warm rather than hot. It's a stall that trusts its own restraint.
+          No reputation to speak of outside the estate, which is rather the point. Opens early, closes when the rice runs out, and the sambal is made in a quantity that suggests someone still makes it by hand. Come before nine.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>The control sample. Same postcode, none of the positioning — this is what nasi lemak costs and tastes like when nobody is trying to make it a destination. Useful for calibrating whether the benchmark&rsquo;s premium is buying you food or buying you a room.</p>
         <div class="meta-row">
-          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
-          <span><span class="label">Opens</span><span class="val">06:00</span></span>
-          <span><span class="label">Drive</span><span class="val">16 min</span></span>
-          <span><span class="label">Price</span><span class="val">$5–8</span></span>
+          <span><span class="label">Google</span><span class="val star">4.3 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">06:30</span></span>
+          <span><span class="label">Drive</span><span class="val">15 min</span></span>
+          <span><span class="label">Price</span><span class="val">$3–5</span></span>
         </div>
       </div>
       <div class="aside">
-        <a class="verify" href="https://www.google.com/maps/search/Sinar+Pagi+Nasi+Lemak+Geylang+Serai" target="_blank" rel="noopener">Verify on Maps</a>
+        <a class="verify" href="https://www.google.com/maps/search/Nasi+Lemak+Clementi+448+Market+Food+Centre" target="_blank" rel="noopener">Verify on Maps</a>
       </div>
     </article>
 
-    <article class="plate" data-tags="breakfast traditional">
-      <div class="rank">07<small>Old Airport Rd</small></div>
+    <article class="plate" data-tags="breakfast west">
+      <div class="rank">09<small>Jurong West</small></div>
       <div class="body">
-        <h2>CoCo Nasi Lemak</h2>
-        <p class="locus">Old Airport Road Food Centre · Stall 01-113</p>
-        <div class="signature">A Malaysian-Chinese hand — sweeter sambal, wetter rice, more perfume.</div>
+        <h2>Latiffa Huri</h2>
+        <p class="locus">Jurong West · kopitiam stall</p>
+        <div class="signature">A $4.50 standard plate: fried egg, chicken wing, ikan kuning, otah.</div>
         <p class="note">
-          If you grew up on KL-style nasi lemak this is the closest analogue in Singapore. The set with fried fish is the local order; the rice comes out with visible coconut sheen.
+          Tucked into a Jurong West coffeeshop and priced like it&rsquo;s still 2015. The standard set needs no customisation, though the menu allows it. Worth the drive only if you&rsquo;re already heading west — but genuinely good if you are.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>Delivers four components for the price of Sunset Railway&rsquo;s side order. The rendang is the thing you&rsquo;ll miss. A fair trade if you&rsquo;re hungry rather than curious.</p>
         <div class="meta-row">
-          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
           <span><span class="label">Opens</span><span class="val">07:00</span></span>
-          <span><span class="label">Drive</span><span class="val">16 min</span></span>
-          <span><span class="label">Price</span><span class="val">$4–7</span></span>
+          <span><span class="label">Drive</span><span class="val">19 min</span></span>
+          <span><span class="label">Price</span><span class="val">$4.50–7</span></span>
         </div>
       </div>
       <div class="aside">
-        <a class="verify" href="https://www.google.com/maps/search/CoCo+Nasi+Lemak+Old+Airport+Road" target="_blank" rel="noopener">Verify on Maps</a>
+        <a class="verify" href="https://www.google.com/maps/search/Latiffa+Huri+Nasi+Lemak+Jurong+West" target="_blank" rel="noopener">Verify on Maps</a>
       </div>
     </article>
 
-    <article class="plate" data-tags="traditional">
-      <div class="rank">08<small>Geylang Lor 15</small></div>
-      <div class="body">
-        <h2>Bali Nasi Lemak</h2>
-        <p class="locus">Geylang Lorong 15 · 24-hour coffeeshop</p>
-        <div class="signature">Otah, sausage, and a paprik that eats like satay sauce.</div>
-        <p class="note">
-          The Geylang stalwart for post-shift eaters and morning drivers alike. The plate is a build-your-own: choose four sides, ask for extra sambal, eat with your hands if the queue behind you allows it.
-        </p>
-        <div class="meta-row">
-          <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
-          <span><span class="label">Opens</span><span class="val">24 hr</span></span>
-          <span><span class="label">Drive</span><span class="val">18 min</span></span>
-          <span><span class="label">Price</span><span class="val">$6–10</span></span>
-        </div>
-      </div>
-      <div class="aside">
-        <a class="verify" href="https://www.google.com/maps/search/Bali+Nasi+Lemak+Geylang+Lorong+15" target="_blank" rel="noopener">Verify on Maps</a>
-        <div class="badges"><span class="badge warn">4.4 · close</span></div>
-      </div>
-    </article>
-
-    <article class="plate" data-tags="breakfast traditional">
-      <div class="rank">09<small>Tanjong Katong</small></div>
-      <div class="body">
-        <h2>Ponggol Nasi Lemak</h2>
-        <p class="locus">Tanjong Katong Road · 965</p>
-        <div class="signature">A canonical order sheet: chicken wing, luncheon meat, otah, ikan kuning.</div>
-        <p class="note">
-          The chain everyone tried on the way home from a party at some point. The Tanjong Katong flagship is the one to visit — larger kitchen, faster turnover, and you can order breakfast at any hour. Sambal is on the sweet side.
-        </p>
-        <div class="meta-row">
-          <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
-          <span><span class="label">Opens</span><span class="val">24 hr</span></span>
-          <span><span class="label">Drive</span><span class="val">18 min</span></span>
-          <span><span class="label">Price</span><span class="val">$5–10</span></span>
-        </div>
-      </div>
-      <div class="aside">
-        <a class="verify" href="https://www.google.com/maps/search/Ponggol+Nasi+Lemak+Tanjong+Katong" target="_blank" rel="noopener">Verify on Maps</a>
-      </div>
-    </article>
-
-    <article class="plate" data-tags="breakfast traditional">
+    <article class="plate" data-tags="breakfast west">
       <div class="rank">10<small>Boon Lay · AYE</small></div>
       <div class="body">
         <h2>Boon Lay Power Nasi Lemak</h2>
         <p class="locus">Boon Lay Place Food Village · Stall 01-106</p>
-        <div class="signature">The West's answer to Adam Road — larger portions, longer hours.</div>
+        <div class="signature">The West&rsquo;s answer to Adam Road — larger portions, longer hours.</div>
         <p class="note">
           A straight shot down the AYE. Come for the chicken cutlet and the deep-fried fish; stay because the queue for a table gives you the excuse. Twenty minutes on a good morning, more if the AYE has decided otherwise.
         </p>
+        <p class="benchmark"><b>vs. Sunset Railway</b>The furthest entry and the one that most rewards the drive — a genuinely serious plate at hawker prices, available around the clock. Sunset Railway wins on comfort and on proximity; this wins on almost everything you actually put in your mouth.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
           <span><span class="label">Opens</span><span class="val">24 hr</span></span>
@@ -641,6 +713,7 @@
       </div>
       <div class="aside">
         <a class="verify" href="https://www.google.com/maps/search/Boon+Lay+Power+Nasi+Lemak" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge hot">Worth the drive</span></div>
       </div>
     </article>
 
@@ -651,19 +724,26 @@
       <div>
         <h3>How the list was made</h3>
         <p>
-          Every entry passed three tests: Google Maps rating at or near 4.5 stars, editorial coverage from at least one of SETHLUI, MissTamChiak, Eatbook, or a Straits Times review in the last five years, and a Google Maps drive estimate of twenty minutes or under from Redhill Close on a clear weekday morning.
+          Every entry passed four tests: located in Singapore's west or central regions, a Google Maps rating at or near 4.5 stars, editorial coverage from at least one of SETHLUI, Eatbook, Honeycombers or a comparable guide, and a drive estimate of twenty minutes or under from Redhill Close on a clear weekday morning.
+        </p>
+        <p>
+          East-side stalls were excluded by design — Geylang Serai, Old Airport Road and Tanjong Katong all have strong contenders, but none of them are a reasonable morning drive from Redhill.
         </p>
         <p>
           Preference was given to stalls open by 8am. Two entries — The Coconut Club (opens 11) and Nasi Lemak Chinatown (opens 10:30) — earned their spot on quality alone.
         </p>
       </div>
       <div>
-        <h3>Verify before you drive</h3>
+        <h3>About the benchmark</h3>
         <p>
-          Hawker stalls close without notice and Google ratings drift week to week. Every entry above links to a live Google Maps search — use it to confirm today's hours and whether the stall is trading before you set off.
+          Cafe Sunset Railway (41 Sunset Way, Clementi Arcade) is the reference plate rather than the winner. It sits at a useful midpoint — a sit-down cafe serving coconut basmati rice with rendang chicken, open 8am but only Thursday to Sunday — which makes it a fair yardstick for both the hawker stalls below it on price and the restaurants above it on ambition.
         </p>
         <p>
-          Redhill Close is the anchor point for the drive-time estimates. Add three to five minutes if you're leaving after 8:15am.
+          On the food alone, Selera Rasa and Boon Lay Power both beat it. On the experience — a table, a ceramic plate, and no queue — it holds its own against everything on this list.
+        </p>
+        <h3 style="margin-top:24px">Verify before you drive</h3>
+        <p>
+          Hawker stalls close without notice and Google ratings drift week to week. Every entry links to a live Google Maps search — use it to confirm today's hours before you set off. Redhill Close anchors the drive estimates; add three to five minutes after 8:15am.
         </p>
       </div>
     </div>
@@ -681,7 +761,10 @@
         chip.setAttribute('aria-pressed', 'true');
         const f = chip.dataset.filter;
         plates.forEach(p => {
-          if (f === 'all') { p.classList.remove('hidden'); return; }
+          if (f === 'all' || p.classList.contains('reference')) {
+            p.classList.remove('hidden');
+            return;
+          }
           const tags = (p.dataset.tags || '').split(' ');
           p.classList.toggle('hidden', !tags.includes(f));
         });
