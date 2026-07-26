@@ -1,0 +1,691 @@
+<title>Ten Plates — A Nasi Lemak Field Guide from Redhill Close</title>
+<style>
+  :root {
+    --rice: #f4ecd6;
+    --rice-2: #ece1c2;
+    --pandan: #103d2e;
+    --pandan-soft: #2a5f4b;
+    --sambal: #c93a1a;
+    --sambal-ink: #9a2a10;
+    --gula: #7a4c1e;
+    --kaya: #d4b16a;
+    --rule: #c9b98a;
+    --ground: var(--rice);
+    --ink: var(--pandan);
+    --meta: var(--gula);
+    --accent: var(--sambal);
+    --card: rgba(255,255,255,0.35);
+    --hover: rgba(201,58,26,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #1a1610;
+      --ink: #efe3c4;
+      --meta: #b58f5a;
+      --accent: #e56a44;
+      --rule: #3a3020;
+      --card: rgba(255,255,255,0.03);
+      --hover: rgba(229,106,68,0.08);
+      --pandan: #7fb096;
+      --pandan-soft: #5a8a72;
+      --kaya: #d4b16a;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f4ecd6;
+    --ink: #103d2e;
+    --meta: #7a4c1e;
+    --accent: #c93a1a;
+    --rule: #c9b98a;
+    --card: rgba(255,255,255,0.35);
+    --hover: rgba(201,58,26,0.06);
+    --pandan: #103d2e;
+    --pandan-soft: #2a5f4b;
+  }
+  :root[data-theme="dark"] {
+    --ground: #1a1610;
+    --ink: #efe3c4;
+    --meta: #b58f5a;
+    --accent: #e56a44;
+    --rule: #3a3020;
+    --card: rgba(255,255,255,0.03);
+    --hover: rgba(229,106,68,0.08);
+    --pandan: #7fb096;
+    --pandan-soft: #5a8a72;
+    --kaya: #d4b16a;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--ground); color: var(--ink); }
+  body {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .masthead {
+    padding-top: 40px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .kicker {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 12px;
+    transform: translateY(-3px);
+  }
+  h1.title {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(44px, 7.6vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    margin: 0 0 20px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h1.title em { font-style: normal; color: var(--accent); }
+  .standfirst {
+    font-size: clamp(17px, 1.9vw, 21px);
+    line-height: 1.5;
+    max-width: 62ch;
+    color: var(--ink);
+    opacity: 0.85;
+    margin: 0 0 28px;
+  }
+  .byline {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--meta);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .byline .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rule); display: inline-block; }
+
+  /* Banana-leaf wave */
+  .leaf-wave {
+    display: block;
+    width: 100%;
+    height: 44px;
+    margin-top: 32px;
+    color: var(--pandan);
+    opacity: 0.9;
+  }
+  @media (prefers-color-scheme: dark) {
+    .leaf-wave { opacity: 0.55; }
+  }
+  :root[data-theme="dark"] .leaf-wave { opacity: 0.55; }
+  :root[data-theme="light"] .leaf-wave { opacity: 0.9; }
+
+  /* Filter row */
+  .filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+  .chip {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.15s ease;
+    font-variant-numeric: tabular-nums;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip[aria-pressed="true"] {
+    background: var(--pandan);
+    color: var(--ground);
+    border-color: var(--pandan);
+  }
+  :root[data-theme="dark"] .chip[aria-pressed="true"],
+  @media (prefers-color-scheme: dark) {
+    .chip[aria-pressed="true"] {
+      background: var(--pandan);
+      color: var(--ground);
+    }
+  }
+
+  /* LIST */
+  .list {
+    padding: 8px 0 40px;
+    counter-reset: rank;
+  }
+  .plate {
+    display: grid;
+    grid-template-columns: 96px 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding: 34px 8px 30px;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.18s ease;
+    position: relative;
+  }
+  .plate:hover { background: var(--hover); }
+  .plate.hidden { display: none; }
+
+  .rank {
+    font-family: Georgia, serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 84px;
+    line-height: 0.85;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    margin-top: -6px;
+  }
+  .rank small {
+    display: block;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--meta);
+    margin-top: 6px;
+  }
+
+  .body h2 {
+    font-family: Georgia, serif;
+    font-weight: 900;
+    font-size: clamp(26px, 3.4vw, 34px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .locus {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--meta);
+    margin: 0 0 14px;
+  }
+  .note {
+    font-size: 16.5px;
+    line-height: 1.55;
+    max-width: 58ch;
+    margin: 0 0 16px;
+    color: var(--ink);
+    opacity: 0.92;
+  }
+  .signature {
+    display: inline-block;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--pandan-soft);
+    border-left: 2px solid var(--kaya);
+    padding: 2px 0 2px 12px;
+    margin-bottom: 14px;
+  }
+  :root[data-theme="dark"] .signature,
+  @media (prefers-color-scheme: dark) { .signature { color: var(--pandan); } }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 22px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: var(--meta);
+    font-variant-numeric: tabular-nums;
+    align-items: baseline;
+  }
+  .meta-row .label {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: block;
+    color: var(--meta);
+    opacity: 0.75;
+    margin-bottom: 3px;
+  }
+  .meta-row .val { color: var(--ink); font-weight: 500; }
+  .meta-row .val.star { color: var(--accent); font-weight: 700; }
+
+  .aside {
+    text-align: right;
+    min-width: 140px;
+    padding-top: 8px;
+  }
+  .verify {
+    display: inline-block;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pandan);
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid var(--pandan);
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  :root[data-theme="dark"] .verify,
+  @media (prefers-color-scheme: dark) { .verify { color: var(--pandan); border-color: var(--pandan); } }
+  .verify:hover {
+    background: var(--pandan);
+    color: var(--ground);
+  }
+  .verify::after { content: " ↗"; }
+
+  .badges {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    margin-top: 12px;
+  }
+  .badge {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--pandan);
+    color: var(--ground);
+    white-space: nowrap;
+  }
+  .badge.warn { background: var(--kaya); color: #4a2f10; }
+  .badge.hot { background: var(--sambal); color: #fff; }
+  :root[data-theme="dark"] .badge.warn,
+  @media (prefers-color-scheme: dark) { .badge.warn { color: #2a1a05; } }
+
+  /* Footer */
+  footer {
+    border-top: 3px double var(--rule);
+    margin-top: 20px;
+    padding: 40px 0 60px;
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  footer h3 {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+    font-weight: 800;
+  }
+  footer p { max-width: 62ch; margin: 0 0 14px; color: var(--ink); opacity: 0.85; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .colophon {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--meta);
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 18px; }
+    .plate {
+      grid-template-columns: 60px 1fr;
+      gap: 16px;
+      padding: 26px 4px 22px;
+    }
+    .rank { font-size: 54px; }
+    .aside {
+      grid-column: 1 / -1;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 4px;
+    }
+    .badges {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 0;
+    }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    h1.title { font-size: 46px; }
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="kicker">A field guide · Redhill Close, Singapore</p>
+    <h1 class="title">Ten plates of <em>nasi&nbsp;lemak</em> worth leaving home for.</h1>
+    <p class="standfirst">
+      A shortlist of Singapore's best coconut-rice breakfasts, filtered for a
+      Redhill Close postcode: 4.5-star (or thereabouts) on Google, breakfast
+      hours where possible, and — with two forgivable exceptions — a drive
+      under twenty minutes on a clear morning.
+    </p>
+    <div class="byline">
+      <span>Curated 26 Jul 2026</span>
+      <span class="dot"></span>
+      <span>Sources · Google · SETHLUI · MissTamChiak · Eatbook</span>
+    </div>
+    <svg class="leaf-wave" viewBox="0 0 960 44" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,22 Q40,4 80,22 T160,22 T240,22 T320,22 T400,22 T480,22 T560,22 T640,22 T720,22 T800,22 T880,22 T960,22 L960,44 L0,44 Z" fill="currentColor"/>
+      <path d="M0,22 Q40,4 80,22 T160,22 T240,22 T320,22 T400,22 T480,22 T560,22 T640,22 T720,22 T800,22 T880,22 T960,22" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+    </svg>
+    <div class="filters" role="group" aria-label="Filter results">
+      <button class="chip" data-filter="all" aria-pressed="true">All ten</button>
+      <button class="chip" data-filter="breakfast" aria-pressed="false">Breakfast open</button>
+      <button class="chip" data-filter="near" aria-pressed="false">≤ 10 min drive</button>
+      <button class="chip" data-filter="traditional" aria-pressed="false">Traditional</button>
+      <button class="chip" data-filter="modern" aria-pressed="false">Modern</button>
+    </div>
+  </header>
+
+  <main class="list" id="list">
+
+    <article class="plate" data-tags="breakfast near traditional">
+      <div class="rank">01<small>Walk from home</small></div>
+      <div class="body">
+        <h2>Fa Ji Nasi Lemak</h2>
+        <p class="locus">ABC Brickworks Food Centre · Stall 01-113</p>
+        <div class="signature">Fried-to-order chicken wing, sambal that leans smoky over sweet.</div>
+        <p class="note">
+          The neighbourhood answer. A ten-minute walk from Redhill Close and the queue moves briskly by 8am. Get the wing and drumstick set; the ikan bilis stays crisp because they only fry it when you order.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">06:00</span></span>
+          <span><span class="label">Drive</span><span class="val">3 min</span></span>
+          <span><span class="label">Price</span><span class="val">$4–6</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Fa+Ji+Nasi+Lemak+ABC+Brickworks" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge hot">Local pick</span></div>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast near traditional">
+      <div class="rank">02<small>10 min via CTE</small></div>
+      <div class="body">
+        <h2>Rahim Muslim Food</h2>
+        <p class="locus">Hong Lim Market &amp; Food Centre · Stall 02-79</p>
+        <div class="signature">The office-crowd standard: light sambal, generous rice.</div>
+        <p class="note">
+          A civil-service institution since the 1970s. You come here for the composure of the plate — nothing shouts, nothing is out of place, and it's on the table in ninety seconds. Bring cash.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">06:30</span></span>
+          <span><span class="label">Drive</span><span class="val">9 min</span></span>
+          <span><span class="label">Price</span><span class="val">$3.50–5</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Rahim+Muslim+Food+Hong+Lim" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast modern">
+      <div class="rank">03<small>Amoy St</small></div>
+      <div class="body">
+        <h2>Nasi Lemak Chinatown</h2>
+        <p class="locus">Amoy Street Food Centre · Stall 02-79</p>
+        <div class="signature">Otah on the side, sambal built from dried shrimp.</div>
+        <p class="note">
+          A modernised Chinese-hawker take that regularly appears on best-of lists. The rice is fragrant enough to eat on its own; the fried chicken thigh is the reason to arrive by 11:30.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">10:30</span></span>
+          <span><span class="label">Drive</span><span class="val">11 min</span></span>
+          <span><span class="label">Price</span><span class="val">$5–8</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Nasi+Lemak+Chinatown+Amoy+Street" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="modern">
+      <div class="rank">04<small>Beach Rd</small></div>
+      <div class="body">
+        <h2>The Coconut Club</h2>
+        <p class="locus">Beach Road (flagship) &amp; Ann Siang Hill</p>
+        <div class="signature">Bario rice, deep-fried ayam berempah — nasi lemak at restaurant altitude.</div>
+        <p class="note">
+          The reference point for gourmet nasi lemak in Singapore. Bario coconuts from Sarawak, house-blended sambal, a chicken that has been credibly called the country's best. It's a splurge but the room is quiet and the plate is composed.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">11:00</span></span>
+          <span><span class="label">Drive</span><span class="val">12 min</span></span>
+          <span><span class="label">Price</span><span class="val">$16–24</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/The+Coconut+Club+Beach+Road+Singapore" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge warn">Not breakfast</span></div>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast traditional">
+      <div class="rank">05<small>Adam Rd</small></div>
+      <div class="body">
+        <h2>Selera Rasa Nasi Lemak</h2>
+        <p class="locus">Adam Road Food Centre · Stall 01-02</p>
+        <div class="signature">Patronised by the Sultan of Brunei; the fried chicken is the argument.</div>
+        <p class="note">
+          The most-decorated Malay nasi lemak stall in Singapore, and the queue reflects it — join it before 8:30 or plan for forty minutes. The trip is worth it: crisp-skinned chicken, sambal with real depth, and rice you can taste the pandan in.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">07:00</span></span>
+          <span><span class="label">Drive</span><span class="val">15 min</span></span>
+          <span><span class="label">Price</span><span class="val">$4.50–7</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Selera+Rasa+Nasi+Lemak+Adam+Road" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge hot">A-list</span></div>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast traditional">
+      <div class="rank">06<small>Geylang Serai</small></div>
+      <div class="body">
+        <h2>Sinar Pagi Nasi Lemak</h2>
+        <p class="locus">Geylang Serai Market · Stall 02-137</p>
+        <div class="signature">Beef rendang so tender it flakes with the fork tine.</div>
+        <p class="note">
+          The Sinar Pagi rendang is the reason to make the trip east. Order it with the works — squid sambal, sunny egg, that beef — and expect the plate to come out warm rather than hot. It's a stall that trusts its own restraint.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">06:00</span></span>
+          <span><span class="label">Drive</span><span class="val">16 min</span></span>
+          <span><span class="label">Price</span><span class="val">$5–8</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Sinar+Pagi+Nasi+Lemak+Geylang+Serai" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast traditional">
+      <div class="rank">07<small>Old Airport Rd</small></div>
+      <div class="body">
+        <h2>CoCo Nasi Lemak</h2>
+        <p class="locus">Old Airport Road Food Centre · Stall 01-113</p>
+        <div class="signature">A Malaysian-Chinese hand — sweeter sambal, wetter rice, more perfume.</div>
+        <p class="note">
+          If you grew up on KL-style nasi lemak this is the closest analogue in Singapore. The set with fried fish is the local order; the rice comes out with visible coconut sheen.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">07:00</span></span>
+          <span><span class="label">Drive</span><span class="val">16 min</span></span>
+          <span><span class="label">Price</span><span class="val">$4–7</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/CoCo+Nasi+Lemak+Old+Airport+Road" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="traditional">
+      <div class="rank">08<small>Geylang Lor 15</small></div>
+      <div class="body">
+        <h2>Bali Nasi Lemak</h2>
+        <p class="locus">Geylang Lorong 15 · 24-hour coffeeshop</p>
+        <div class="signature">Otah, sausage, and a paprik that eats like satay sauce.</div>
+        <p class="note">
+          The Geylang stalwart for post-shift eaters and morning drivers alike. The plate is a build-your-own: choose four sides, ask for extra sambal, eat with your hands if the queue behind you allows it.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">24 hr</span></span>
+          <span><span class="label">Drive</span><span class="val">18 min</span></span>
+          <span><span class="label">Price</span><span class="val">$6–10</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Bali+Nasi+Lemak+Geylang+Lorong+15" target="_blank" rel="noopener">Verify on Maps</a>
+        <div class="badges"><span class="badge warn">4.4 · close</span></div>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast traditional">
+      <div class="rank">09<small>Tanjong Katong</small></div>
+      <div class="body">
+        <h2>Ponggol Nasi Lemak</h2>
+        <p class="locus">Tanjong Katong Road · 965</p>
+        <div class="signature">A canonical order sheet: chicken wing, luncheon meat, otah, ikan kuning.</div>
+        <p class="note">
+          The chain everyone tried on the way home from a party at some point. The Tanjong Katong flagship is the one to visit — larger kitchen, faster turnover, and you can order breakfast at any hour. Sambal is on the sweet side.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.4 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">24 hr</span></span>
+          <span><span class="label">Drive</span><span class="val">18 min</span></span>
+          <span><span class="label">Price</span><span class="val">$5–10</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Ponggol+Nasi+Lemak+Tanjong+Katong" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+    <article class="plate" data-tags="breakfast traditional">
+      <div class="rank">10<small>Boon Lay · AYE</small></div>
+      <div class="body">
+        <h2>Boon Lay Power Nasi Lemak</h2>
+        <p class="locus">Boon Lay Place Food Village · Stall 01-106</p>
+        <div class="signature">The West's answer to Adam Road — larger portions, longer hours.</div>
+        <p class="note">
+          A straight shot down the AYE. Come for the chicken cutlet and the deep-fried fish; stay because the queue for a table gives you the excuse. Twenty minutes on a good morning, more if the AYE has decided otherwise.
+        </p>
+        <div class="meta-row">
+          <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
+          <span><span class="label">Opens</span><span class="val">24 hr</span></span>
+          <span><span class="label">Drive</span><span class="val">20 min</span></span>
+          <span><span class="label">Price</span><span class="val">$5–9</span></span>
+        </div>
+      </div>
+      <div class="aside">
+        <a class="verify" href="https://www.google.com/maps/search/Boon+Lay+Power+Nasi+Lemak" target="_blank" rel="noopener">Verify on Maps</a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>How the list was made</h3>
+        <p>
+          Every entry passed three tests: Google Maps rating at or near 4.5 stars, editorial coverage from at least one of SETHLUI, MissTamChiak, Eatbook, or a Straits Times review in the last five years, and a Google Maps drive estimate of twenty minutes or under from Redhill Close on a clear weekday morning.
+        </p>
+        <p>
+          Preference was given to stalls open by 8am. Two entries — The Coconut Club (opens 11) and Nasi Lemak Chinatown (opens 10:30) — earned their spot on quality alone.
+        </p>
+      </div>
+      <div>
+        <h3>Verify before you drive</h3>
+        <p>
+          Hawker stalls close without notice and Google ratings drift week to week. Every entry above links to a live Google Maps search — use it to confirm today's hours and whether the stall is trading before you set off.
+        </p>
+        <p>
+          Redhill Close is the anchor point for the drive-time estimates. Add three to five minutes if you're leaving after 8:15am.
+        </p>
+      </div>
+    </div>
+    <p class="colophon">Field guide · v1 · One-off release · No affiliation with any stall listed</p>
+  </footer>
+</div>
+
+<script>
+  (() => {
+    const chips = document.querySelectorAll('.chip');
+    const plates = document.querySelectorAll('.plate');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+        chip.setAttribute('aria-pressed', 'true');
+        const f = chip.dataset.filter;
+        plates.forEach(p => {
+          if (f === 'all') { p.classList.remove('hidden'); return; }
+          const tags = (p.dataset.tags || '').split(' ');
+          p.classList.toggle('hidden', !tags.includes(f));
+        });
+      });
+    });
+  })();
+</script>
