@@ -373,6 +373,66 @@
   a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
 
+  .branches {
+    margin: 16px 0 0;
+    padding: 13px 15px;
+    border: 1px solid var(--rule);
+    background: rgba(255,255,255,0.45);
+    max-width: 58ch;
+  }
+  .branches .blabel {
+    display: block;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .branches ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .branches li {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink);
+    padding-left: 16px;
+    position: relative;
+  }
+  .branches li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--kaya);
+  }
+  .branches li.nearest::before { color: var(--accent); }
+  .branches b { font-weight: 700; }
+  .branches .when {
+    display: block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    color: var(--meta);
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+  .branches .tag {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-left: 6px;
+  }
+  .branches .out { opacity: 0.6; }
+
   .plate.reference {
     background: linear-gradient(to right, var(--card), transparent 70%);
     border-top: 3px solid var(--pandan);
@@ -459,6 +519,9 @@
     .note { font-size: 17px; line-height: 1.6; }
     .signature { font-size: 16.5px; }
     .benchmark { font-size: 14.5px; padding: 12px 14px; }
+    .branches { padding: 12px 13px; }
+    .branches li { font-size: 13.5px; }
+    .branches .when { font-size: 12px; }
     .pill { font-size: 11px; }
 
     .meta-row { gap: 14px 20px; font-size: 13.5px; }
@@ -515,6 +578,7 @@
       <button class="chip" data-filter="all" aria-pressed="true">All ten</button>
       <button class="chip" data-filter="indoor" aria-pressed="false">Indoor</button>
       <button class="chip" data-filter="curry" aria-pressed="false">Curry chicken</button>
+      <button class="chip" data-filter="branches" aria-pressed="false">Multi-branch</button>
       <button class="chip" data-filter="breakfast" aria-pressed="false">Early breakfast</button>
       <button class="chip" data-filter="near" aria-pressed="false">≤ 5 min drive</button>
     </div>
@@ -549,7 +613,7 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="weekend indoor curry central">
+    <article class="plate" data-tags="branches weekend indoor curry central">
       <div class="rank">01<small>Dhoby Ghaut</small></div>
       <div class="body">
         <h2>Bibik Violet</h2>
@@ -560,13 +624,20 @@
           <span class="pill curry">Chicken curry ✓</span>
           <span class="pill">Sat–Sun 10:00–21:30</span>
         </div>
-        <p class="note">Still the only entry clearing every preference at once — indoor seating, a chicken curry listed in its own right, and open all seven days. Weekday breakfast starts at 8am; at weekends the doors open at 10am instead, so treat it as a late brunch rather than an early start. Confirmed trading in 2026.</p>
+        <p class="note">Still the only entry clearing every preference at once — indoor seating, a chicken curry listed in its own right, and open all seven days. A second branch opened at Great World in July 2026, and for you it is the better one: eight minutes away instead of eleven, and open 10am to 10pm every day of the week. At the original Orchard Road shophouse, weekday breakfast starts at 8am but weekends do not open until 10am.</p>
         <p class="benchmark"><b>vs. Sunset Railway</b>The same pairing — nasi lemak and chicken curry in a cafe setting — but open seven days against the benchmark&rsquo;s four. Sunset Railway answers back on portion size and on being the quieter room.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">rating unconfirmed</span></span>
           <span><span class="label">Weekend</span><span class="val">Sat–Sun 10:00–21:30</span></span>
-          <span><span class="label">Drive</span><span class="val">11 min</span></span>
+          <span><span class="label">Drive</span><span class="val">8–11 min</span></span>
           <span><span class="label">Price</span><span class="val">$14.90</span></span>
+        </div>
+        <div class="branches">
+          <span class="blabel">Both branches within 20 minutes</span>
+          <ul>
+            <li class="nearest"><b>Great World</b><span class="tag">Nearest</span><br>1 Kim Seng Promenade · #02-K101/K102<span class="when">Daily 10:00–22:00 · 8 min</span></li>
+            <li><b>Temasek Shophouse</b><br>28 Orchard Road · #01-05<span class="when">Mon–Fri 8:00–21:30 · Sat–Sun 10:00–21:30 · 11 min</span></li>
+          </ul>
         </div>
       </div>
       <div class="aside">
@@ -575,7 +646,7 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="weekend indoor central">
+    <article class="plate" data-tags="branches weekend indoor central">
       <div class="rank">02<small>Beach Road</small></div>
       <div class="body">
         <h2>The Coconut Club</h2>
@@ -586,13 +657,21 @@
           <span class="pill">Rendang, not curry chicken</span>
           <span class="pill">Weekends 11:00–22:30</span>
         </div>
-        <p class="note">Note the address: the Ann Siang Hill shophouse this guide previously listed has closed, and the restaurant now runs from 269 Beach Road with room for close to a hundred diners. Weekends are its best window — open straight through from 11am to 10:30pm with no afternoon break. Closed the first Monday of each month. The signature chicken is fried berempah, not curried.</p>
+        <p class="note">Note the address: the Ann Siang Hill shophouse this guide previously listed has closed, and the restaurant now runs from 269 Beach Road with room for close to a hundred diners. The Beach Road flagship runs 8:30am to 10:30pm daily, which quietly makes it one of the few sit-down breakfast options here. There is also a New Bahru outlet in River Valley — half the drive, and the one serving quail nasi lemak — though it opens at 11:30am and closes Mondays. The signature chicken is fried berempah, not curried.</p>
         <p class="benchmark"><b>vs. Sunset Railway</b>The same idea with a bigger budget — both sit-down, ceramic-plate nasi lemak, but Coconut Club sources Bario coconuts from Sarawak and charges accordingly. Sunset Railway is the version you can justify weekly, and the one that actually serves chicken curry.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
-          <span><span class="label">Weekend</span><span class="val">Open both days</span></span>
-          <span><span class="label">Drive</span><span class="val">14 min</span></span>
+          <span><span class="label">Weekend</span><span class="val">Daily 8:30–22:30</span></span>
+          <span><span class="label">Drive</span><span class="val">8–14 min</span></span>
           <span><span class="label">Price</span><span class="val">$16–24</span></span>
+        </div>
+        <div class="branches">
+          <span class="blabel">3 branches · 2 within 20 minutes</span>
+          <ul>
+            <li class="nearest"><b>New Bahru</b><span class="tag">Nearest</span><br>46 Kim Yam Road · #01-14 · River Valley<span class="when">Tue–Thu &amp; Sun 11:30–22:30 · Fri–Sat to 23:30 · closed Mon · 8 min</span></li>
+            <li><b>Beach Road</b><br>269 Beach Road · the flagship<span class="when">Daily 8:30–22:30 · 14 min</span></li>
+            <li class="out"><b>Siglap</b><span class="tag">Too far</span><br>East coast — outside the 20-minute radius<span class="when">Not covered by this guide</span></li>
+          </ul>
         </div>
       </div>
       <div class="aside">
@@ -627,7 +706,7 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="weekend indoor central">
+    <article class="plate" data-tags="branches weekend indoor central">
       <div class="rank">04<small>City Gate</small></div>
       <div class="body">
         <h2>Uptown Nasi Lemak</h2>
@@ -645,6 +724,13 @@
           <span><span class="label">Weekend</span><span class="val">Open both days</span></span>
           <span><span class="label">Drive</span><span class="val">13 min</span></span>
           <span><span class="label">Price</span><span class="val">$6–10</span></span>
+        </div>
+        <div class="branches">
+          <span class="blabel">Both branches within 20 minutes</span>
+          <ul>
+            <li class="nearest"><b>City Gate</b><span class="tag">Use this one</span><br>371 Beach Road · #01-27<span class="when">Daily 11:00–20:00 · 13 min</span></li>
+            <li><b>Telok Ayer</b><span class="tag">Weekdays only</span><br>121 Telok Ayer Street · #01-01 Stall 7<span class="when">Mon–Fri only · closed weekends · 11 min</span></li>
+          </ul>
         </div>
       </div>
       <div class="aside">
@@ -730,7 +816,7 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="weekend breakfast near central">
+    <article class="plate" data-tags="branches weekend breakfast near central">
       <div class="rank">08<small>Tiong Bahru</small></div>
       <div class="body">
         <h2>Super Shiok Nasi Lemak</h2>
@@ -741,7 +827,7 @@
           <span class="pill">Curry unconfirmed</span>
           <span class="pill">Tue–Sun 7am–1pm</span>
         </div>
-        <p class="note">Five minutes up the road inside Tiong Bahru Market, which is at its best on a weekend morning when nearly every stall is trading. Halal-certified, open Tuesday through Sunday from 7am, closed Mondays. Reviews run current to February 2026. Come before nine and pair it with a coffee downstairs.</p>
+        <p class="note">Five minutes up the road inside Tiong Bahru Market, which is at its best on a weekend morning when nearly every stall is trading. Halal-certified, open Tuesday through Sunday from 7am, closed Mondays. Reviews run current to February 2026. Come before nine and pair it with a coffee downstairs. Worth knowing that most people rate the Bendemeer branch the better of the two — it opens daily from 6am, at the cost of ten extra minutes in the car.</p>
         <p class="benchmark"><b>vs. Sunset Railway</b>Beats the benchmark on price and on getting you fed before 8am on a Saturday. Loses on comfort — a second-floor hawker deck with no air-conditioning and a determined weekend crowd.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.5 ★</span></span>
@@ -749,13 +835,21 @@
           <span><span class="label">Drive</span><span class="val">5 min</span></span>
           <span><span class="label">Price</span><span class="val">$4–7</span></span>
         </div>
+        <div class="branches">
+          <span class="blabel">3 branches · 2 within 20 minutes</span>
+          <ul>
+            <li class="nearest"><b>Tiong Bahru Market</b><span class="tag">Nearest</span><br>30 Seng Poh Road · #02-38<span class="when">Tue–Sun 7:00–13:00 · closed Mon · 5 min</span></li>
+            <li><b>Bendemeer Market</b><span class="tag">Rated best</span><br>29 Bendemeer Road · #01-13<span class="when">Daily 6:00–13:30 · 15 min</span></li>
+            <li class="out"><b>Bedok 538</b><span class="tag">Too far</span><br>East coast — outside the 20-minute radius<span class="when">Not covered by this guide</span></li>
+          </ul>
+        </div>
       </div>
       <div class="aside">
         <a class="verify" href="https://www.google.com/maps/search/Super+Shiok+Nasi+Lemak+Tiong+Bahru+Market" target="_blank" rel="noopener">Verify on Maps</a>
       </div>
     </article>
 
-    <article class="plate" data-tags="weekend breakfast curry west">
+    <article class="plate" data-tags="branches weekend breakfast curry west">
       <div class="rank">09<small>Clementi Rd</small></div>
       <div class="body">
         <h2>Fong Seng Nasi Lemak</h2>
@@ -766,13 +860,20 @@
           <span class="pill curry">Curry available as a side</span>
           <span class="pill">Effectively 22 hours</span>
         </div>
-        <p class="note">Open from 6am to 4am the next morning, every day, which makes it the most forgiving entry here — there is no hour of a weekend at which it is shut. Sets from about $4.50 with a long sides menu that usually includes a curry. Sheltered and fan-cooled rather than air-conditioned.</p>
+        <p class="note">Open from 6am to 4am the next morning, every day, which makes it the most forgiving entry here — there is no hour of a weekend at which it is shut. Sets from about $4.50 with a long sides menu that usually includes a curry. Sheltered and fan-cooled rather than air-conditioned. There is a second branch on Pasir Panjang Road that is three minutes nearer to you.</p>
         <p class="benchmark"><b>vs. Sunset Railway</b>Ten minutes apart in the same corner of the west, and the anti-Sunset-Railway in every way: no closing days, no waiting for Thursday, a third of the price. What it gives up is the room — this is fluorescent-lit and functional.</p>
         <div class="meta-row">
           <span><span class="label">Google</span><span class="val star">4.6 ★</span></span>
           <span><span class="label">Weekend</span><span class="val">Open both days</span></span>
-          <span><span class="label">Drive</span><span class="val">13 min</span></span>
+          <span><span class="label">Drive</span><span class="val">10–13 min</span></span>
           <span><span class="label">Price</span><span class="val">$4.50–8</span></span>
+        </div>
+        <div class="branches">
+          <span class="blabel">Both branches within 20 minutes</span>
+          <ul>
+            <li class="nearest"><b>Pasir Panjang</b><span class="tag">Nearest</span><br>101 Pasir Panjang Road<span class="when">Long hours · 10 min</span></li>
+            <li><b>Clementi Road</b><br>22 Clementi Road · near NUS<span class="when">06:00–04:00 · 13 min</span></li>
+          </ul>
         </div>
       </div>
       <div class="aside">
@@ -780,7 +881,7 @@
       </div>
     </article>
 
-    <article class="plate" data-tags="weekend breakfast central">
+    <article class="plate" data-tags="branches weekend breakfast central">
       <div class="rank">10<small>Adam Rd</small></div>
       <div class="body">
         <h2>Selera Rasa Nasi Lemak</h2>
@@ -799,6 +900,13 @@
           <span><span class="label">Drive</span><span class="val">15 min</span></span>
           <span><span class="label">Price</span><span class="val">$4.50–7</span></span>
         </div>
+        <div class="branches">
+          <span class="blabel">Both branches within 20 minutes</span>
+          <ul>
+            <li class="nearest"><b>Adam Road</b><br>Adam Road Food Centre · #01-02<span class="when">Sat–Sun 7:00–15:00 · closed Fri · 15 min</span></li>
+            <li><b>Ang Mo Kio</b><span class="tag">At the limit</span><br>603 Ang Mo Kio Ave 5 · #01-2683<span class="when">Tue–Sun 7:30–13:00 · closed Mon · ≈20 min</span></li>
+          </ul>
+        </div>
       </div>
       <div class="aside">
         <a class="verify" href="https://www.google.com/maps/search/Selera+Rasa+Nasi+Lemak+Adam+Road" target="_blank" rel="noopener">Verify on Maps</a>
@@ -811,21 +919,23 @@
   <footer>
     <div class="footer-grid">
       <div>
-        <h3>What changed in this update</h3>
+        <h3>Branches</h3>
         <p>
-          Every entry was re-checked against current listings in August 2026. Three did not survive the audit unchanged.
+          Six of the eleven entries run more than one outlet, and in three cases the branch nearer to Redhill Close is not the one the guides write about. Each of those cards now lists every outlet inside a twenty-minute drive, nearest first.
         </p>
         <p>
-          <strong>Straits Club has ceased operations.</strong> The Bukit Merah Lane 1 shop that sat at number three in the last version of this guide is gone, and it has been removed rather than replaced in place.
+          <strong>Bibik Violet at Great World</strong> opened in July 2026 — eight minutes away against eleven for the Orchard Road original, and open 10am to 10pm daily rather than closing early at weekends. <strong>The Coconut Club at New Bahru</strong> in River Valley is likewise half the drive of the Beach Road flagship, and the only outlet serving quail nasi lemak, though it opens at 11:30am and shuts on Mondays. <strong>Fong Seng on Pasir Panjang Road</strong> is three minutes nearer than the Clementi Road shop.
         </p>
         <p>
-          <strong>The Coconut Club&rsquo;s Ann Siang Hill shophouse has closed.</strong> The restaurant itself is very much alive — it moved to 269 Beach Road, into a larger room — so the entry survives with a corrected address.
+          Two branches are worth the extra drive rather than the saved one: <strong>Super Shiok at Bendemeer</strong> is widely rated the better of its outlets and opens daily from 6am, and <strong>Selera Rasa at Ang Mo Kio</strong> sits right on the twenty-minute line. Outlets in the east — Coconut Club at Siglap, Super Shiok at Bedok — fall outside the radius and are listed only so you know they exist.
         </p>
         <p>
-          <strong>Uptown Nasi Lemak at Telok Ayer now trades weekdays only.</strong> That fails the weekend rule outright, so this guide points at the City Gate branch on Beach Road instead, which opens all seven days.
+          <strong>Uptown is the one case where the branch matters most:</strong> Telok Ayer closes at weekends entirely, so City Gate is the only usable outlet on a Saturday or Sunday.
         </p>
+
+        <h3 style="margin-top:24px">Earlier closures</h3>
         <p>
-          Joining the list: <strong>Kitchenman Nasi Lemak</strong> at CT Hub, a Michelin Bib Gourmand kitchen with rendang chicken and ayam kunyit among its sides.
+          <strong>Straits Club has ceased operations</strong> and was removed. <strong>The Coconut Club&rsquo;s Ann Siang Hill shophouse closed</strong>; the brand moved to Beach Road. <strong>Kitchenman Nasi Lemak</strong> joined the list in their place.
         </p>
       </div>
       <div>
